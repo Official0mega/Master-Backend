@@ -1,0 +1,26 @@
+{
+  "name": "advanced-queuing-system",
+  "version": "1.0.0",
+  "description": "* npm i express cors\r * npm i --save-dev nodemon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec ts-node src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mysql2": "^2.2.5",
+    "reflect-metadata": "^0.1.14",
+    "typeorm": "^0.3.17"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.4",
+    "nodemon": "^3.0.2",
+    "typescript": "^5.3.3"
+  }
+}
