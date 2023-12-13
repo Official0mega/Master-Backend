@@ -60,6 +60,33 @@ app.post('/api/products', async (req: Request, res: Response) => {
   }
 });
 
+// Get Product by ID
+app.get('/api/products/:id', async (req: Request, res: Response) => {
+  try {
+    // Convert the ID to a number (assuming your product ID is a number)
+    const productId = parseInt(req.params.id, 10);
+
+    // Check if the conversion is successful
+    if (isNaN(productId)) {
+      return res.status(400).send('Invalid product ID');
+    }
+
+    // Find the product by ID using findByIds method
+    const product = await productRepository.findByIds([productId]);
+
+    if (!product || product.length === 0) {
+      return res.status(404).send(`Product with ID ${productId} not found`);
+    }
+
+    return res.send(product[0]);
+  } catch (error) {
+    console.error('Error in GET /api/products/:id:', error);
+    return res.status(500).send('Internal Server Error');
+  }
+});
+
+
+
     app.listen(PORT, () => {
       console.log(`Server is Listening on Port:${PORT}`);
     });
