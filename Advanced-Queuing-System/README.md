@@ -1,3 +1,16 @@
+
+# Advanced Queuing System
+* Create MicroServices using Node.js
+* Create an Event-Driven Architecture with RabbitMQ.
+![queue-system](https://github.com/Official0mega/Master-Backend/assets/122806822/106caadc-947b-47a5-84db-10aefe5e5edd)
+
+
+### Features
+* Two MicroServices (Admin && User)
+* Two Separate Databases (MySQL && MongoDB)
+* We would Explore more about Relational Databases(MySQL) && NoSQL Databases(MongoDB).
+
+
 ### Manual Installation
 * npm install -g ts-node
 * npm i express cors
@@ -53,17 +66,6 @@ CREATE DATABASE queue_system;
 
 #### Now, you can safely exit;
 * EXIT;
-
-# Advanced Queuing System
-* Create MicroServices using Node.js
-* Create an Event-Driven Architecture with RabbitMQ.
-![queue-system](https://github.com/Official0mega/Master-Backend/assets/122806822/106caadc-947b-47a5-84db-10aefe5e5edd)
-
-
-### Features
-* Two MicroServices (Admin && User)
-* Two Separate Databases (MySQL && MongoDB)
-* We would Explore more about Relational Databases(MySQL) && NoSQL Databases(MongoDB).
 
 ##### Backup the Database
 * Use the mysqldump command to create a backup of the database. Replace [path] with the desired backup file path.
