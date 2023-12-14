@@ -85,6 +85,30 @@ app.get('/api/products/:id', async (req: Request, res: Response) => {
   }
 });
 
+// Update Product by ID
+app.put('/api/products/:id', async (req: Request, res: Response) => {
+  try {
+    const productId = parseInt(req.params.id, 10);
+
+    if (isNaN(productId)) {
+      return res.status(400).send('Invalid product ID');
+    }
+
+    const product = await productRepository.findByIds([productId]);
+
+    if (!product || product.length === 0) {
+      return res.status(404).send("Product not found");
+    }
+
+    productRepository.merge(product[0], req.body);
+    const result = await productRepository.save(product[0]);
+
+    return res.send(result);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal Server Error");
+  }
+});
 
 
     app.listen(PORT, () => {
