@@ -110,6 +110,30 @@ app.put('/api/products/:id', async (req: Request, res: Response) => {
   }
 });
 
+// Delete Product by ID
+app.delete('/api/products/:id', async (req: Request, res: Response) => {
+  try {
+    const productId = parseInt(req.params.id, 10);
+
+    if (isNaN(productId)) {
+      return res.status(400).send('Invalid product ID');
+    }
+
+    const product = await productRepository.findByIds([productId]);
+
+    if (!product || product.length === 0) {
+      return res.status(404).send("Product not found");
+    }
+
+    await productRepository.remove(product[0]);
+
+    return res.send("Product deleted successfully");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal Server Error");
+  }
+});
+
 
     app.listen(PORT, () => {
       console.log(`Server is Listening on Port:${PORT}`);
