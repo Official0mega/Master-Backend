@@ -134,6 +134,32 @@ app.delete('/api/products/:id', async (req: Request, res: Response) => {
   }
 });
 
+// Increase Likes 
+app.post('/api/products/:id/likes', async (req: Request, res: Response) => {
+  try {
+    const productId = parseInt(req.params.id, 10);
+
+    if (isNaN(productId)) {
+      return res.status(400).send('Invalid product ID');
+    }
+
+    const product = await productRepository.findByIds([productId]);
+
+    if (!product || product.length === 0) {
+      return res.status(404).send("Product not found");
+    }
+    
+    // Fix: Change `post` to `save`
+    product[0].likes++;
+    await productRepository.save(product[0]);
+
+    return res.send("Likes increased successfully");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal Server Error");
+  }
+});
+
 
     app.listen(PORT, () => {
       console.log(`Server is Listening on Port:${PORT}`);
